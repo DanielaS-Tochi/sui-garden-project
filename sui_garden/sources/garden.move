@@ -16,7 +16,7 @@ module sui_garden::garden {
 
     /// Creates a new Plant and transfers it to the caller
     /// Crea una nueva planta y la transfiere al remitente
-    public entry fun create_plant(name: vector<u8>, ctx: &mut TxContext) {
+    entry fun create_plant(name: vector<u8>, ctx: &mut TxContext) {
         let len = vector::length(&name);
         assert!(len > 0, 100); // Name must not be empty
         assert!(len <= MAX_NAME_LEN, 101); // Name too long
@@ -28,7 +28,7 @@ module sui_garden::garden {
 
     /// Transfers a Plant from one user to another
     /// Transfiere una planta de un usuario a otro
-    public entry fun transfer_plant(plant: Plant, ctx: &TxContext) {
+    entry fun transfer_plant(plant: Plant, ctx: &TxContext) {
         public_transfer(plant, sender(ctx));
     }
 
